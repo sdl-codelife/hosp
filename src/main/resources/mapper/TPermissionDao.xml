@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdl.hosp.dao.TPermissionDao">
+
+    <resultMap type="com.sdl.hosp.model.entity.TPermission" id="TPermissionMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="role" column="role" jdbcType="VARCHAR"/>
+        <result property="permission" column="permission" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryByRole" resultMap="TPermissionMap">
+        select
+          id, role, permission
+        from hosp.t_permission
+        where role = #{role}
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdl.hosp.dao.TRoleDao">
+
+    <resultMap type="com.sdl.hosp.model.entity.TRole" id="TRoleMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userid" column="userid" jdbcType="INTEGER"/>
+        <result property="usertype" column="usertype" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TRoleMap">
+        select
+          id, userid, usertype
+        from hosp.t_role
+        where userid = #{userid}
+    </select>
+
+
+
+</mapper>

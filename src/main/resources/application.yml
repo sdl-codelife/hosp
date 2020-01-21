@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/hosp?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: sdllove1314
+    type: com.alibaba.druid.pool.DruidDataSource
+server:
+  port: 8787
+mybatis:
+  mapper-locations:  classpath:mapper/*.xml
