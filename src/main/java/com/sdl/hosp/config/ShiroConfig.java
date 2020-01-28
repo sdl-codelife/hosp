@@ -50,6 +50,7 @@ public class ShiroConfig {
         filterRuleMap.put("/swagger-resources/**", "anon");
         filterRuleMap.put("/401", "anon");
 
+
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterRuleMap);
         return shiroFilterFactoryBean;
     }

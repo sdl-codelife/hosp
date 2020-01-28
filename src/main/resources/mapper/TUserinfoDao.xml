@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdl.hosp.dao.TUserinfoDao">
+    <resultMap type="com.sdl.hosp.model.entity.TUserinfo" id="TUserinfoMap">
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="realname" column="realname" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="VARCHAR"/>
+        <result property="avator" column="avator" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="intro" column="intro" jdbcType="VARCHAR"/>
+        <result property="userid" column="userid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="findAllUserInfo" resultMap="TUserinfoMap">
+        SELECT
+        u.username,
+        i.realname,i.sex,i.avator,i.phone,i.email,i.intro,i.userid
+        from t_user u,t_userinfo i
+        where u.id = i.userid
+    </select>
+    <select id="findUserInfoById" resultMap="TUserinfoMap">
+        SELECT
+        u.username,
+        i.realname,i.sex,i.avator,i.phone,i.email,i.intro,i.userid
+        from t_user u,t_userinfo i
+        where u.id = i.userid and i.userid = #{userid}
+    </select>
+    <update id="updateUserInfoById">
+        update hosp.t_userinfo
+        <set>
+            <if test="realname != null and realname != ''">
+                realname = #{realname},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+            <if test="avator != null and avator != ''">
+                avator = #{avator},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="intro != null and intro != ''">
+                intro = #{intro},
+            </if>
+        </set>
+        where userid = #{userid}
+    </update>
+</mapper>

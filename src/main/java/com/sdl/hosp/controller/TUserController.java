@@ -26,16 +26,7 @@ public class TUserController {
     @Resource
     private TUserService tUserService;
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("selectOne")
-    public TUser selectOne(Integer id) {
-        return this.tUserService.queryById(id);
-    }
+
     @GetMapping("loginuser")
     public String lg(){
         Subject subject = SecurityUtils.getSubject();

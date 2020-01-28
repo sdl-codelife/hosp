@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.sdl.hosp.dao")
 public class HospApplication {
 
+
     public static void main(String[] args) {
         SpringApplication.run(HospApplication.class, args);
     }

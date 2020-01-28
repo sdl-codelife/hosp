@@ -3,18 +3,24 @@ package com.sdl.hosp.controller;
 import com.sdl.hosp.model.dto.ResponseBean;
 import com.sdl.hosp.model.entity.TUser;
 import com.sdl.hosp.service.TUserService;
+import com.sdl.hosp.utils.UserUtil;
 import com.sdl.hosp.utils.jwt.JWTUtil;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 
 @RestController
 public class LoginController {
     @Autowired
     TUserService tUserService;
+    @Autowired
+    UserUtil userUtil;
     /**
      * 请求登录
      * @param username
@@ -34,7 +40,6 @@ public class LoginController {
             return ResponseBean.error("密码错误");
         }
     }
-
     /**
      * 退出登录
      * @return
@@ -48,5 +53,11 @@ public class LoginController {
         } else {
             return  ResponseBean.success("退出成功");
         }
+    }
+    @ApiOperation(value = "根据token获得用户名")
+    @GetMapping("/getUserName")
+    @RequiresUser
+    public ResponseBean getUserN(ServletRequest request, ServletResponse response){
+        return ResponseBean.success("success",userUtil.getUserName(request,response));
     }
 }

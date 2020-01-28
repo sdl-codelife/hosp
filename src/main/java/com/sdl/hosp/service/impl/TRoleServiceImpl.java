@@ -6,7 +6,7 @@ import com.sdl.hosp.service.TRoleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
+
 
 /**
  * (TRole)表服务实现类
