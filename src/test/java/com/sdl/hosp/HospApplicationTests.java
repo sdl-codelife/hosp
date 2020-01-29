@@ -29,7 +29,7 @@ class HospApplicationTests {
         //List<TUserinfo> tUsers = tUserinfoService.findAllUserInfo();
         //TUserinfo tUser = tUserinfoService.findUserInfoById(100);
         TUserinfo tUserinfo = new TUserinfo();
-        tUserinfo.setAvator("sss");
+        tUserinfo.setAvatar("sss");
         tUserinfo.setUserid(100);
         int tUser = tUserinfoService.updateUserInfoById(tUserinfo);
         System.out.println(tUser);

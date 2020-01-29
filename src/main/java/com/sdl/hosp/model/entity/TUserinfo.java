@@ -19,7 +19,7 @@ public class TUserinfo implements Serializable {
 
     private String sex;
     
-    private String avator;
+    private String avatar;
     
     private String phone;
     
@@ -53,12 +53,12 @@ public class TUserinfo implements Serializable {
         this.sex = sex;
     }
 
-    public String getAvator() {
-        return avator;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvator(String avator) {
-        this.avator = avator;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getPhone() {
@@ -99,7 +99,7 @@ public class TUserinfo implements Serializable {
                 "username='" + username + '\'' +
                 ", realname='" + realname + '\'' +
                 ", sex='" + sex + '\'' +
-                ", avator='" + avator + '\'' +
+                ", avatar='" + avatar + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", intro='" + intro + '\'' +

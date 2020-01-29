@@ -1,5 +1,6 @@
 package com.sdl.hosp.utils.jwt;
 
+import com.sdl.hosp.model.dto.ResponseBean;
 import com.sdl.hosp.utils.shiro.JWTToken;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.springframework.http.HttpStatus;
@@ -8,11 +9,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class JWTFilter extends BasicHttpAuthenticationFilter {
-
-
 
     /**
      * 判断用户是否想要登入。
@@ -22,6 +20,12 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
     protected boolean isLoginAttempt(ServletRequest request, ServletResponse response) {
         HttpServletRequest req = (HttpServletRequest) request;
         String authorization = req.getHeader("Authorization");
+        //token长度肯定大于10
+        if(authorization!=null){
+            if(authorization.length()<10){
+                return false;
+            }
+        }
         return authorization != null;
     }
 
@@ -32,7 +36,6 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
     protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         String authorization = httpServletRequest.getHeader("Authorization");
-
         JWTToken token = new JWTToken(authorization);
         // 提交给realm进行登入，如果错误他会抛出异常并被捕获
         getSubject(request, response).login(token);
@@ -84,12 +87,9 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
      * @param request
      * @param response
      */
-    private void responseError(ServletRequest request, ServletResponse response){
-        try {
-            HttpServletResponse resp = (HttpServletResponse) response;
-            resp.sendRedirect("/error");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private ResponseBean responseError(ServletRequest request, ServletResponse response){
+        HttpServletResponse resp = (HttpServletResponse) response;
+        //   resp.sendRedirect("/error");
+        return ResponseBean.error("非法请求");
     }
 }

@@ -5,7 +5,7 @@
         <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="realname" column="realname" jdbcType="VARCHAR"/>
         <result property="sex" column="sex" jdbcType="VARCHAR"/>
-        <result property="avator" column="avator" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
         <result property="intro" column="intro" jdbcType="VARCHAR"/>
@@ -15,14 +15,14 @@
     <select id="findAllUserInfo" resultMap="TUserinfoMap">
         SELECT
         u.username,
-        i.realname,i.sex,i.avator,i.phone,i.email,i.intro,i.userid
+        i.realname,i.sex,i.avatar,i.phone,i.email,i.intro,i.userid
         from t_user u,t_userinfo i
         where u.id = i.userid
     </select>
     <select id="findUserInfoById" resultMap="TUserinfoMap">
         SELECT
         u.username,
-        i.realname,i.sex,i.avator,i.phone,i.email,i.intro,i.userid
+        i.realname,i.sex,i.avatar,i.phone,i.email,i.intro,i.userid
         from t_user u,t_userinfo i
         where u.id = i.userid and i.userid = #{userid}
     </select>
@@ -35,8 +35,8 @@
             <if test="sex != null and sex != ''">
                 sex = #{sex},
             </if>
-            <if test="avator != null and avator != ''">
-                avator = #{avator},
+            <if test="avatar != null and avatar != ''">
+                avatar = #{avatar},
             </if>
             <if test="phone != null and phone != ''">
                 phone = #{phone},

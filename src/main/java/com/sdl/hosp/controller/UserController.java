@@ -51,7 +51,7 @@ public class UserController {
             imgfile.transferTo(newFile);
             TUserinfo tUserinfo = new TUserinfo();
             tUserinfo.setUserid(userID);
-            tUserinfo.setAvator(retrunPath);
+            tUserinfo.setAvatar(retrunPath);
             int flag = tUserinfoService.updateUserInfoById(tUserinfo);
             return ResponseBean.success("更改成功",retrunPath);
 
