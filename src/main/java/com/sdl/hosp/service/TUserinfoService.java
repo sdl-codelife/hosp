@@ -1,6 +1,7 @@
 package com.sdl.hosp.service;
 
 
+import com.sdl.hosp.model.dto.UserInfo;
 import com.sdl.hosp.model.entity.TUserinfo;
 import java.util.List;
 
@@ -14,7 +15,9 @@ public interface TUserinfoService {
 
 
 
-    List<TUserinfo> findAllUserInfo();
-    TUserinfo findUserInfoById(Integer userid);
+    List<UserInfo> findAllUserInfo();
+    UserInfo findUserInfoById(Integer userid);
     int updateUserInfoById(TUserinfo tUserinfo);
+    int addUserInfo(TUserinfo tUserinfo);
+    List<UserInfo> findAllUserByparms(String parms);
 }

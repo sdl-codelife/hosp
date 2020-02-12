@@ -11,5 +11,7 @@ import com.sdl.hosp.model.entity.TUser;
  */
 public interface TUserDao {
     TUser findUserByName(String userName);
-
+    int updateUser(TUser tUser);
+    int delteUserById(Integer id);
+    int addUser(TUser tUser);
 }

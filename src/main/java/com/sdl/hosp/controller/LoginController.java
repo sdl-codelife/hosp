@@ -45,7 +45,7 @@ public class LoginController {
      * @return
      */
     @ApiOperation(value = "退出登录")
-    @GetMapping("/loginout")
+    @PostMapping("/loginout")
     public ResponseBean loginout(){
         if(null!=SecurityUtils.getSubject()&&SecurityUtils.getSubject().isAuthenticated()){
             SecurityUtils.getSubject().logout();
@@ -54,10 +54,5 @@ public class LoginController {
             return  ResponseBean.success("退出成功");
         }
     }
-    @ApiOperation(value = "根据token获得用户名")
-    @GetMapping("/getUserName")
-    @RequiresUser
-    public ResponseBean getUserN(ServletRequest request, ServletResponse response){
-        return ResponseBean.success("success",userUtil.getUserName(request,response));
-    }
+
 }

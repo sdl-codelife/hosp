@@ -18,6 +18,7 @@ public interface TUserService {
      */
 
     TUser findUserbyName(String userName);
-
-
+    int updateUser(TUser tUser);
+    int delteUserById(Integer id);
+    int addUser(TUser tUser);
 }

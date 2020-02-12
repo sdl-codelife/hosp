@@ -1,7 +1,5 @@
 package com.sdl.hosp.model.entity;
 
-import com.alibaba.druid.support.json.JSONUtils;
-
 import java.io.Serializable;
 
 /**
@@ -12,8 +10,6 @@ import java.io.Serializable;
  */
 public class TUserinfo implements Serializable {
     private static final long serialVersionUID = -78231293226149258L;
-
-    private String username;
 
     private String realname;
 
@@ -28,14 +24,6 @@ public class TUserinfo implements Serializable {
     private String intro;
     
     private Integer userid;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getRealname() {
         return realname;
@@ -96,8 +84,7 @@ public class TUserinfo implements Serializable {
     @Override
     public String toString() {
         return "TUserinfo{" +
-                "username='" + username + '\'' +
-                ", realname='" + realname + '\'' +
+                "realname='" + realname + '\'' +
                 ", sex='" + sex + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", phone='" + phone + '\'' +
@@ -105,5 +92,19 @@ public class TUserinfo implements Serializable {
                 ", intro='" + intro + '\'' +
                 ", userid=" + userid +
                 '}';
+    }
+
+    public TUserinfo() {
+
+    }
+
+    public TUserinfo(String realname, String sex, String avatar, String phone, String email, String intro, Integer userid) {
+        this.realname = realname;
+        this.sex = sex;
+        this.avatar = avatar;
+        this.phone = phone;
+        this.email = email;
+        this.intro = intro;
+        this.userid = userid;
     }
 }

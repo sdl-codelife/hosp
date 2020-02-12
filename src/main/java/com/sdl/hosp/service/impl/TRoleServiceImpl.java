@@ -30,4 +30,8 @@ public class TRoleServiceImpl implements TRoleService {
         return this.tRoleDao.queryById(userid);
     }
 
+    @Override
+    public int addRole(TRole tRole) {
+        return tRoleDao.addRole(tRole);
+    }
 }

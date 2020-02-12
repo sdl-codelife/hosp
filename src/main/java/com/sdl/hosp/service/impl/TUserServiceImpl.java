@@ -28,4 +28,16 @@ public class TUserServiceImpl implements TUserService {
         return tUserDao.findUserByName(userName);
     }
 
+    @Override
+    public int updateUser(TUser tUser) {
+        return tUserDao.updateUser(tUser);
+    }
+    @Override
+    public int delteUserById(Integer id) {
+        return tUserDao.delteUserById(id);
+    }
+    @Override
+    public int addUser(TUser tUser) {
+        return tUserDao.addUser(tUser);
+    }
 }

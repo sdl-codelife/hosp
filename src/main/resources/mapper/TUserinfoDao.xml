@@ -12,14 +12,15 @@
         <result property="userid" column="userid" jdbcType="INTEGER"/>
     </resultMap>
 
-    <select id="findAllUserInfo" resultMap="TUserinfoMap">
-        SELECT
+    <select id="findAllUserInfo" resultType="com.sdl.hosp.model.dto.UserInfo">
+      SELECT
         u.username,
-        i.realname,i.sex,i.avatar,i.phone,i.email,i.intro,i.userid
-        from t_user u,t_userinfo i
-        where u.id = i.userid
+        i.realname,i.sex,i.avatar,i.phone,i.email,i.intro,i.userid,
+				r.usertype
+        from t_user u,t_userinfo i,t_role r
+        where u.id = i.userid and i.userid = r.userid
     </select>
-    <select id="findUserInfoById" resultMap="TUserinfoMap">
+    <select id="findUserInfoById" resultType="com.sdl.hosp.model.dto.UserInfo">
         SELECT
         u.username,
         i.realname,i.sex,i.avatar,i.phone,i.email,i.intro,i.userid
@@ -50,4 +51,15 @@
         </set>
         where userid = #{userid}
     </update>
+    <insert id="addUserInfo">
+        insert into t_userinfo(realname,sex,phone,email,userid) values (#{realname},#{sex},#{phone},#{email},#{userid})
+    </insert>
+    <select id="findAllUserByparms" resultType="com.sdl.hosp.model.dto.UserInfo" parameterType="String">
+     SELECT
+        u.username,
+        i.realname,i.sex,i.avatar,i.phone,i.email,i.intro,i.userid,
+				r.usertype
+        from t_user u,t_userinfo i,t_role r
+        where u.id = i.userid and i.userid = r.userid and u.username LIKE "%"#{parms}"%"
+    </select>
 </mapper>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdl.hosp.dao.TMedicineDao">
+
+    <resultMap type="com.sdl.hosp.model.entity.TMedicine" id="TMedicineMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="image" column="image" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="date" column="date" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="num" column="num" jdbcType="INTEGER"/>
+        <result property="note" column="note" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TMedicineMap">
+        select
+          id, image, name, price, date, type, num, note
+        from hosp.t_medicine
+        where id = #{id}
+    </select>
+
+    <select id="findAllbyParms" resultMap="TMedicineMap">
+        select
+          id, image, name, price, date, type, num, note
+        from hosp.t_medicine
+        <where>
+            <if test="name != null and name != ''">
+               name LIKE "%"#{parms}"%"
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into hosp.t_medicine(image, name, price, date, type, num, note)
+        values (#{image}, #{name}, #{price}, #{date}, #{type}, #{num}, #{note})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update hosp.t_medicine
+        <set>
+            <if test="image != null and image != ''">
+                image = #{image},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="date != null and date != ''">
+                date = #{date},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="note != null and note != ''">
+                note = #{note},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from hosp.t_medicine where id = #{id}
+    </delete>
+
+</mapper>

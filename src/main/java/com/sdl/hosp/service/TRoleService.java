@@ -17,6 +17,6 @@ public interface TRoleService {
      * @return 实例对象
      */
     TRole queryById(Integer userid);
-
+    int addRole(TRole tRole);
 
 }

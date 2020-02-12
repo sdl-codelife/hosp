@@ -31,6 +31,7 @@ public class ExceptionController {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseBean globalException(HttpServletRequest request, Throwable ex) {
+
         return new ResponseBean(getStatus(request).value(), ex.getMessage(), null);
     }
 

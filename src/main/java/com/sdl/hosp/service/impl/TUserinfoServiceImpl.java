@@ -1,6 +1,7 @@
 package com.sdl.hosp.service.impl;
 
 
+import com.sdl.hosp.model.dto.UserInfo;
 import com.sdl.hosp.model.entity.TUserinfo;
 import com.sdl.hosp.dao.TUserinfoDao;
 import com.sdl.hosp.service.TUserinfoService;
@@ -21,17 +22,26 @@ public class TUserinfoServiceImpl implements TUserinfoService {
     private TUserinfoDao tUserinfoDao;
 
     @Override
-    public List<TUserinfo> findAllUserInfo() {
+    public List<UserInfo> findAllUserInfo() {
         return tUserinfoDao.findAllUserInfo();
     }
 
     @Override
-    public TUserinfo findUserInfoById(Integer userid) {
+    public UserInfo findUserInfoById(Integer userid) {
         return tUserinfoDao.findUserInfoById(userid);
     }
 
     @Override
     public int updateUserInfoById(TUserinfo tUserinfo) {
         return tUserinfoDao.updateUserInfoById(tUserinfo);
+    }
+
+    @Override
+    public int addUserInfo(TUserinfo tUserinfo) {
+        return tUserinfoDao.addUserInfo(tUserinfo);
+    }
+    @Override
+    public List<UserInfo> findAllUserByparms(String parms) {
+        return tUserinfoDao.findAllUserByparms(parms);
     }
 }

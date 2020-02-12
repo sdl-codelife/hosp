@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 public class UserUtil {
     @Autowired
     TUserService tUserService;
-    public String getUserName(ServletRequest request, ServletResponse response){
-        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        String token = httpServletRequest.getHeader("Authorization");
+    public String getUserName(HttpServletRequest request){
+        String token = request.getHeader("Authorization");
         String userName = JWTUtil.getUserName(token);
         return userName;
     }
 
-    public int getUserID(ServletRequest request, ServletResponse response){
-        String userName = getUserName(request,response);
-        System.out.println(userName);
-        System.out.println(tUserService.findUserbyName(userName));
+    public int getUserID(HttpServletRequest request){
+        String userName = getUserName(request);
         return tUserService.findUserbyName(userName).getId();
+    }
+    public boolean checkpassword(String oldpassword,HttpServletRequest request){
+        return JWTUtil.verify(request.getHeader("Authorization"),getUserName(request),oldpassword);
     }
 }

@@ -47,5 +47,9 @@ public class TRole implements Serializable {
         this.usertype = usertype;
     }
 
-
+    public TRole(Integer id, Integer userid, String usertype) {
+        this.id = id;
+        this.userid = userid;
+        this.usertype = usertype;
+    }
 }

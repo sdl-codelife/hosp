@@ -1,8 +1,6 @@
 package com.sdl.hosp.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -19,13 +17,14 @@ public class UploadFileMvcConfig implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
 		String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\upload\\images\\";
+		String macpath = System.getProperty("user.dir")+"/src/main/resources/static/upload/images/";
 		String os = System.getProperty("os.name");
 		if (os.toLowerCase().startsWith("win")) {
 			registry.addResourceHandler("/static/upload/images/**").
 					addResourceLocations("file:"+path);
 		}else{//linux和mac系统 可以根据逻辑再做处理
 			registry.addResourceHandler("/static/upload/images/**").
-					addResourceLocations("file:"+path);
+					addResourceLocations("file:"+macpath);
 		}
 		//super.addResourceHandlers(registry);
 

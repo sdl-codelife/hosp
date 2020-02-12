@@ -17,7 +17,6 @@ public class TPermission implements Serializable {
     
     private String permission;
 
-
     public Integer getId() {
         return id;
     }
@@ -41,5 +40,6 @@ public class TPermission implements Serializable {
     public void setPermission(String permission) {
         this.permission = permission;
     }
+
 
 }

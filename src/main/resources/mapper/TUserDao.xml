@@ -14,6 +14,22 @@
         from hosp.t_user
         where username = #{username}
     </select>
-
-
+    <update id="updateUser">
+        update t_user
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="delteUserById">
+        delete from t_user where id = #{id}
+    </delete>
+    <insert id="addUser" useGeneratedKeys="true" keyProperty = "id">
+        insert into t_user (username,password) values (#{username},#{password})
+    </insert>
 </mapper>
