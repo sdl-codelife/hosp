@@ -51,14 +51,18 @@ public class UserController {
     @PostMapping("/uploadimage")
     public ResponseBean uploadimage(@RequestParam("imgfile") MultipartFile imgfile){
         int userId = userUtil.getUserID(request);
-        System.out.println(userId+"userupload");
+        TUserinfo info = tUserinfoService.findUserInfoById(userId);
+
+       if(null!=info.getAvatar()&&info.getAvatar()!=""){
+           String oldavatar = info.getAvatar();
+           UploadUtils.delteOldavatar(oldavatar);
+       }
         String url = UploadUtils.uploadimage(imgfile);
         TUserinfo tUserinfo = new TUserinfo();
         tUserinfo.setUserid(userId);
         tUserinfo.setAvatar(url);
         tUserinfoService.updateUserInfoById(tUserinfo);
         return ResponseBean.success("更改成功",url);
-
     }
     @ApiOperation("修改用户信息")
     @PutMapping("/updateUserinfo")
