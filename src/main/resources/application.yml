@@ -5,6 +5,10 @@ spring:
     password: sdllove1314
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB  
 server:
   port: 8787
 mybatis:

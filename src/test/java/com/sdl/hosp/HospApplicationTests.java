@@ -1,24 +1,29 @@
 package com.sdl.hosp;
 
-import com.sdl.hosp.model.entity.TPet;
-import com.sdl.hosp.service.*;
+
+
+import com.sdl.hosp.model.entity.TBanner;
+import com.sdl.hosp.service.TBannerService;
 import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
 @SpringBootTest(classes = HospApplication.class)
 class HospApplicationTests {
+    // @Autowired
+    // private TUserinfoService tUserinfoService;
+    // @Autowired
+    // private TUserService tUserService;
+    // @Autowired
+    // private TRoleService tRoleService;
+    // @Autowired
+    // private TPermissionService tPermissionService;
+    // @Autowired
+    // private TPetService tPetService;
     @Autowired
-    private TUserinfoService tUserinfoService;
-    @Autowired
-    private TUserService tUserService;
-    @Autowired
-    private TRoleService tRoleService;
-    @Autowired
-    private TPermissionService tPermissionService;
-    @Autowired
-    private TPetService tPetService;
+    TBannerService tBannerService;
     @Test
     void test(){
 //        List<UserInfo> tUsers = tUserinfoService.findAllUserInfo();

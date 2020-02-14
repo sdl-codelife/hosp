@@ -1,7 +1,6 @@
 package com.sdl.hosp.dao;
 
 import com.sdl.hosp.model.entity.TPet;
-import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**

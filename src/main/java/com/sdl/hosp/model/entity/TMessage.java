@@ -1,6 +1,5 @@
 package com.sdl.hosp.model.entity;
 
-import java.util.Date;
 import java.io.Serializable;
 
 /**
@@ -11,19 +10,16 @@ import java.io.Serializable;
  */
 public class TMessage implements Serializable {
     private static final long serialVersionUID = -64190229512389981L;
-    
-    private Integer id;
-    
-    private String title;
-    
-    private String content;
-    
-    private Date createTime;
-    
-    private Date updateTime;
-    
-    private Integer createUser;
 
+    private Integer id;
+
+    private String title;
+
+    private String content;
+
+    private String createTime;
+
+    private Integer createUser;
 
     public Integer getId() {
         return id;
@@ -49,20 +45,12 @@ public class TMessage implements Serializable {
         this.content = content;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 
     public Integer getCreateUser() {

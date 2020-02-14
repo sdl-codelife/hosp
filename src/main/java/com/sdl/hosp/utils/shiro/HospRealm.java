@@ -16,8 +16,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-
-import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -64,7 +62,7 @@ public class HospRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
        String token = authenticationToken.getCredentials().toString();
        String username = JWTUtil.getUserName(token);
-        System.out.println(username+"正在登录认证...");
+        // System.out.println(username+"正在登录认证...");
        if (username == null){
            throw new AuthenticationException("token已过期");
        }

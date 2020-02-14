@@ -1,7 +1,7 @@
 package com.sdl.hosp.service;
 
 import com.sdl.hosp.model.entity.TUser;
-import java.util.List;
+
 
 /**
  * (TUser)表服务接口

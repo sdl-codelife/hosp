@@ -11,7 +11,7 @@ import java.util.List;
  * @since 2020-02-12 14:57:50
  */
 public interface TMessageDao {
-    List<TMessage> findAllbyParms(String name);
+    List<TMessage> findAllbyParms(String title);
     /**
      * 通过ID查询单条数据
      *

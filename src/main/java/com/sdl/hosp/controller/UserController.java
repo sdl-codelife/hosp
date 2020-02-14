@@ -50,30 +50,15 @@ public class UserController {
     @ApiOperation("上传用户头像")
     @PostMapping("/uploadimage")
     public ResponseBean uploadimage(@RequestParam("imgfile") MultipartFile imgfile){
-        if (imgfile.isEmpty()){
-            return ResponseBean.error("error");
-        }
         int userId = userUtil.getUserID(request);
         System.out.println(userId+"userupload");
-        File filepath = UploadUtils.getImgDirFile();
-        String fileName = userId+UploadUtils.imgfilename();
-        String retrunPath = "/"+UploadUtils.IMG_PATH_PREFIX+"/"+fileName;
-        try{
-            File newFile = new File(filepath.getAbsolutePath()+File.separator+fileName);
-            imgfile.transferTo(newFile);
-            TUserinfo tUserinfo = new TUserinfo();
-            tUserinfo.setUserid(userId);
-            tUserinfo.setAvatar(retrunPath);
-            int flag = tUserinfoService.updateUserInfoById(tUserinfo);
-            if (flag!=0){
-                return ResponseBean.success("更改成功",retrunPath);
-            }else {
-                return ResponseBean.error("error");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ResponseBean.error("error");
-        }
+        String url = UploadUtils.uploadimage(imgfile);
+        TUserinfo tUserinfo = new TUserinfo();
+        tUserinfo.setUserid(userId);
+        tUserinfo.setAvatar(url);
+        tUserinfoService.updateUserInfoById(tUserinfo);
+        return ResponseBean.success("更改成功",url);
+
     }
     @ApiOperation("修改用户信息")
     @PutMapping("/updateUserinfo")
@@ -84,7 +69,7 @@ public class UserController {
     @ApiOperation("修改用户名或密码")
     @PutMapping("updateuser")
     public  ResponseBean updateUser(@RequestBody TUser tUser){
-        int flag = tUserService.updateUser(tUser);
+        tUserService.updateUser(tUser);
         return ResponseBean.success("修改成功!");
     }
     @ApiOperation("检查用户名是否重复")

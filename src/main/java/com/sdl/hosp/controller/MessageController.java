@@ -5,10 +5,14 @@ import com.github.pagehelper.PageInfo;
 import com.sdl.hosp.model.dto.ResponseBean;
 import com.sdl.hosp.model.entity.TMessage;
 import com.sdl.hosp.service.TMessageService;
+import com.sdl.hosp.utils.UserUtil;
+
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * (TMessage)表控制层
@@ -23,6 +27,11 @@ public class MessageController {
      */
     @Autowired
     private TMessageService tMessageService;
+    @Autowired
+    UserUtil userUtil;
+    @Autowired
+    HttpServletRequest request;
+    
     @ApiOperation("获取所有公告信息")
     @GetMapping("/getallmessage")
     public ResponseBean getallmessage(@RequestParam(value = "pageNo",defaultValue = "1") int pageNo,
@@ -41,6 +50,7 @@ public class MessageController {
     @ApiOperation("添加公告")
     @PostMapping("/addmessage")
     public ResponseBean addmessage(@RequestBody TMessage tMessage){
+        tMessage.setCreateUser(userUtil.getUserID(request));
         tMessageService.insert(tMessage);
         return ResponseBean.success("SUCCESS");
     }

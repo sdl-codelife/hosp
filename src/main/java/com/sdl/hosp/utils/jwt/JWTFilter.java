@@ -88,7 +88,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
      * @param response
      */
     private ResponseBean responseError(ServletRequest request, ServletResponse response){
-        HttpServletResponse resp = (HttpServletResponse) response;
+        // HttpServletResponse resp = (HttpServletResponse) response;
         //   resp.sendRedirect("/error");
         return ResponseBean.error("非法请求");
     }

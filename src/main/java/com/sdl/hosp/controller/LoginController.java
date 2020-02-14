@@ -7,13 +7,9 @@ import com.sdl.hosp.utils.UserUtil;
 import com.sdl.hosp.utils.jwt.JWTUtil;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 
 @RestController
 public class LoginController {

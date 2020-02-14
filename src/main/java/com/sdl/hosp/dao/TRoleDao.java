@@ -1,8 +1,7 @@
 package com.sdl.hosp.dao;
 
 import com.sdl.hosp.model.entity.TRole;
-import org.apache.ibatis.annotations.Param;
-import java.util.List;
+
 
 /**
  * (TRole)表数据库访问层

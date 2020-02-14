@@ -1,7 +1,6 @@
 package com.sdl.hosp.service;
-
 import com.sdl.hosp.model.entity.TPermission;
-import java.util.List;
+
 
 /**
  * (TPermission)表服务接口
