@@ -23,9 +23,10 @@
     <select id="findUserInfoById" resultType="com.sdl.hosp.model.dto.UserInfo">
         SELECT
         u.username,
-        i.realname,i.sex,i.avatar,i.phone,i.email,i.intro,i.userid
-        from t_user u,t_userinfo i
-        where u.id = i.userid and i.userid = #{userid}
+        i.realname,i.sex,i.avatar,i.phone,i.email,i.intro,i.userid,
+				r.usertype
+        from t_user u,t_userinfo i,t_role r
+        where u.id = i.userid and i.userid = r.userid and u.id = #{userid}
     </select>
     <update id="updateUserInfoById">
         update hosp.t_userinfo
