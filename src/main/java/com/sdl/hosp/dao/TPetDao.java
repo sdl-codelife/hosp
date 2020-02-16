@@ -1,6 +1,8 @@
 package com.sdl.hosp.dao;
 
 import com.sdl.hosp.model.entity.TPet;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -11,6 +13,7 @@ import java.util.List;
  */
 public interface TPetDao {
     List<TPet> findPetByparms(String parms);
+    List<TPet> findPetByuserId(@Param("id") Integer id,@Param("name") String name);
     /**
      * 通过ID查询单条数据
      *

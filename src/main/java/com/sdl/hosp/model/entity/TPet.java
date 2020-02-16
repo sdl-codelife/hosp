@@ -94,6 +94,9 @@ public class TPet implements Serializable {
         this.user = user;
     }
 
+    public TPet() {
+    }
+
     public TPet(Integer id, String name, String sex, String type, String age, String image, Integer user) {
         this.id = id;
         this.name = name;

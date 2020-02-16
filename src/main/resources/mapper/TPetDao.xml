@@ -19,15 +19,24 @@
         from hosp.t_pet
         where id = #{id}
     </select>
-
-
+    <select id="findPetByuserId" resultMap="TPetMap">
+        select
+          id, name, sex, type, age, image, user
+        from hosp.t_pet
+        <where>
+            user = #{id}
+            <if test="name !=null and name !=''">
+                and  name LIKE "%"#{name}"%"
+            </if>
+        </where>
+    </select>
     <select id="findPetByparms" resultMap="TPetMap">
         select
           id, name, sex, type, age, image, user
         from hosp.t_pet
         <where>
             <if test="name !=null and name !=''">
-                name LIKE "%"#{parms}"%"
+                name LIKE "%"#{name}"%"
             </if>
         </where>
     </select>

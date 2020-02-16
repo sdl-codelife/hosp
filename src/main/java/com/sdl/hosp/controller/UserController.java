@@ -45,7 +45,6 @@ public class UserController {
 
         int userId = userUtil.getUserID(request);
         UserInfo userInfo = tUserinfoService.findUserInfoById(userId);
-        System.out.println(userInfo);
         return ResponseBean.success("success",userInfo);
     }
     @ApiOperation("上传用户头像")

@@ -31,7 +31,6 @@ public class BannerController {
         TBanner tBanner = new TBanner();
         tBanner.setUrl(url);
         tBannerService.insert(tBanner);
-
         return ResponseBean.success("success",tBanner);
     }
     @ApiOperation("添加banner图title")

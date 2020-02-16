@@ -24,6 +24,11 @@ public class TPetServiceImpl implements TPetService {
         return tPetDao.findPetByparms(parms);
     }
 
+    @Override
+    public List<TPet> findPetByuserId(Integer id,String parms) {
+        return tPetDao.findPetByuserId(id,parms);
+    }
+
     /**
      * 通过ID查询单条数据
      *

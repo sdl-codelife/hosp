@@ -11,6 +11,7 @@ import java.util.List;
  */
 public interface TPetService {
     List<TPet> findPetByparms(String parms);
+    List<TPet> findPetByuserId(Integer id,String parms);
     /**
      * 通过ID查询单条数据
      *
