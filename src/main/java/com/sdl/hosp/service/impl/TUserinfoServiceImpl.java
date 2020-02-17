@@ -22,6 +22,11 @@ public class TUserinfoServiceImpl implements TUserinfoService {
     private TUserinfoDao tUserinfoDao;
 
     @Override
+    public List<UserInfo> findAlldoctor(String parms) {
+        return tUserinfoDao.findAlldoctor(parms);
+    }
+
+    @Override
     public List<UserInfo> findAllUserInfo() {
         return tUserinfoDao.findAllUserInfo();
     }

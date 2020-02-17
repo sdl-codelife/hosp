@@ -128,4 +128,21 @@ public class UserController {
                 userInfo.getAvatar(),userInfo.getPhone(),userInfo.getEmail(),userInfo.getIntro(),user.getId()));
         return ResponseBean.success("添加成功");
     }
+    @ApiOperation("获取所有医生")
+    @GetMapping("/getalldoctor")
+    public ResponseBean getalldoctor(@RequestParam(value = "pageNo",defaultValue = "1") int pageNo,
+                                     @RequestParam(value = "pageSize",defaultValue = "6") int pageSize,
+                                     @RequestParam(value = "parms",required = false) String parms){
+        PageHelper.startPage(pageNo,pageSize);
+        List<UserInfo> userInfo;
+        if (null!=parms){
+            //有限定条件
+            userInfo = tUserinfoService.findAlldoctor(parms);
+        }else {
+            //无条件
+            userInfo = tUserinfoService.findAlldoctor(null);
+        }
+        PageInfo<UserInfo> pageInfo = new PageInfo<>(userInfo);
+        return ResponseBean.success("success",pageInfo);
+    }
 }

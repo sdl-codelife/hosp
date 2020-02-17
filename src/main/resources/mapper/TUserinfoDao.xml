@@ -61,6 +61,24 @@
         i.realname,i.sex,i.avatar,i.phone,i.email,i.intro,i.userid,
 				r.usertype
         from t_user u,t_userinfo i,t_role r
-        where u.id = i.userid and i.userid = r.userid and u.username LIKE "%"#{parms}"%"
+        <where>
+            u.id = i.userid and i.userid = r.userid
+            <if test="parms != null and parms != ''">
+                and u.username LIKE "%"#{parms}"%"
+            </if>
+        </where>
+    </select>
+    <select id="findAlldoctor" resultType="com.sdl.hosp.model.dto.UserInfo" parameterType="String">
+        SELECT
+        u.username,
+        i.realname,i.sex,i.avatar,i.phone,i.email,i.intro,i.userid,
+        r.usertype
+        from t_user u,t_userinfo i,t_role r
+        <where>
+            u.id = i.userid and i.userid = r.userid and r.usertype = 'doctor'
+            <if test="parms != null and parms != ''">
+                and u.username LIKE "%"#{parms}"%"
+            </if>
+        </where>
     </select>
 </mapper>

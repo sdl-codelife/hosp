@@ -16,4 +16,5 @@ public interface TUserinfoDao {
     int updateUserInfoById(TUserinfo tUserinfo);
     int addUserInfo(TUserinfo tUserinfo);
     List<UserInfo> findAllUserByparms(String parms);
+    List<UserInfo> findAlldoctor(String parms);
 }
