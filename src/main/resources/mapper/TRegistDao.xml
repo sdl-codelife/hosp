@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdl.hosp.dao.TRegistDao">
+
+    <resultMap type="com.sdl.hosp.model.entity.TRegist" id="TRegistMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="resoved" column="resoved" jdbcType="INTEGER"/>
+        <result property="question" column="question" jdbcType="VARCHAR"/>
+        <result property="answer" column="answer" jdbcType="VARCHAR"/>
+        <result property="medicine" column="medicine" jdbcType="VARCHAR"/>
+        <result property="petid" column="petid" jdbcType="INTEGER"/>
+        <result property="userid" column="userid" jdbcType="INTEGER"/>
+        <result property="doctorid" column="doctorid" jdbcType="INTEGER"/>
+        <result property="date" column="date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <select id="findAllregist" parameterType="com.sdl.hosp.model.dto.RegisterForm">
+        SELECT
+	      r.*,
+	      p.`name`,
+	      u.username as username,
+	      d.username as doctorname
+	    FROM t_regist r,t_pet p,t_user u,t_user d
+	    where
+	    r.petid=p.id and r.userid = u.id and r.doctorid = d.id and u.id = 258209
+    </select>
+    <!--查询单个-->
+    <select id="queryById" resultMap="TRegistMap">
+        select
+          id, resoved, question, answer, medicine, petid, userid, doctorid, date
+        from hosp.t_regist
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TRegistMap">
+        select
+          id, resoved, question, answer, medicine, petid, userid, doctorid, date
+        from hosp.t_regist
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TRegistMap">
+        select
+          id, resoved, question, answer, medicine, petid, userid, doctorid, date
+        from hosp.t_regist
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="resoved != null">
+                and resoved = #{resoved}
+            </if>
+            <if test="question != null and question != ''">
+                and question = #{question}
+            </if>
+            <if test="answer != null and answer != ''">
+                and answer = #{answer}
+            </if>
+            <if test="medicine != null and medicine != ''">
+                and medicine = #{medicine}
+            </if>
+            <if test="petid != null">
+                and petid = #{petid}
+            </if>
+            <if test="userid != null">
+                and userid = #{userid}
+            </if>
+            <if test="doctorid != null">
+                and doctorid = #{doctorid}
+            </if>
+            <if test="date != null">
+                and date = #{date}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into hosp.t_regist(resoved, question, answer, medicine, petid, userid, doctorid, date)
+        values (#{resoved}, #{question}, #{answer}, #{medicine}, #{petid}, #{userid}, #{doctorid}, #{date})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update hosp.t_regist
+        <set>
+            <if test="resoved != null">
+                resoved = #{resoved},
+            </if>
+            <if test="question != null and question != ''">
+                question = #{question},
+            </if>
+            <if test="answer != null and answer != ''">
+                answer = #{answer},
+            </if>
+            <if test="medicine != null and medicine != ''">
+                medicine = #{medicine},
+            </if>
+            <if test="petid != null">
+                petid = #{petid},
+            </if>
+            <if test="userid != null">
+                userid = #{userid},
+            </if>
+            <if test="doctorid != null">
+                doctorid = #{doctorid},
+            </if>
+            <if test="date != null">
+                date = #{date},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from hosp.t_regist where id = #{id}
+    </delete>
+
+</mapper>
