@@ -2,6 +2,8 @@ package com.sdl.hosp.service;
 
 import com.sdl.hosp.model.dto.RegisterForm;
 import com.sdl.hosp.model.entity.TRegist;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -11,7 +13,8 @@ import java.util.List;
  * @since 2020-02-18 10:19:55
  */
 public interface TRegistService {
-    List<RegisterForm> findAllregist(Integer id);
+    List<RegisterForm> findAllregist(Integer id,Integer resove);
+    List<RegisterForm> findDoctorregist(@Param("id") Integer id, @Param("resove") Integer resove);
     /**
      * 通过ID查询单条数据
      *

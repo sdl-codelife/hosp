@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdl.hosp.dao.TOrderDao">
+
+    <resultMap type="com.sdl.hosp.model.entity.TOrder" id="TOrderMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="num" column="num" jdbcType="INTEGER"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="allprice" column="allprice" jdbcType="NUMERIC"/>
+        <result property="registid" column="registid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TOrderMap">
+        select
+          id, name, num, price, allprice, registid
+        from hosp.t_order
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TOrderMap">
+        select
+          id, name, num, price, allprice, registid
+        from hosp.t_order
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TOrderMap">
+        select
+          id, name, num, price, allprice, registid
+        from hosp.t_order
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="num != null">
+                and num = #{num}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="allprice != null">
+                and allprice = #{allprice}
+            </if>
+            <if test="registid != null">
+                and registid = #{registid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into hosp.t_order(name, num, price, allprice, registid)
+        values (#{name}, #{num}, #{price}, #{allprice}, #{registid})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update hosp.t_order
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="allprice != null">
+                allprice = #{allprice},
+            </if>
+            <if test="registid != null">
+                registid = #{registid},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from hosp.t_order where id = #{id}
+    </delete>
+
+</mapper>

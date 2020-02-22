@@ -18,7 +18,13 @@ public interface TRegistDao {
      * @param id
      * @return
      */
-    List<RegisterForm> findAllregist(Integer id);
+    List<RegisterForm> findAllregist(@Param("id") Integer id,@Param("resove") Integer resove);
+    /**
+     * 根据医生ID查询宠物挂号单
+     * @param id
+     * @return
+     */
+    List<RegisterForm> findDoctorregist(@Param("id") Integer id,@Param("resove") Integer resove);
     /**
      * 通过ID查询单条数据
      *

@@ -124,4 +124,18 @@ public class TRegist implements Serializable {
         this.date = date;
     }
 
+    @Override
+    public String toString() {
+        return "TRegist{" +
+                "id=" + id +
+                ", resoved=" + resoved +
+                ", question='" + question + '\'' +
+                ", answer='" + answer + '\'' +
+                ", medicine='" + medicine + '\'' +
+                ", petid=" + petid +
+                ", userid=" + userid +
+                ", doctorid=" + doctorid +
+                ", date=" + date +
+                '}';
+    }
 }

@@ -13,7 +13,7 @@
         <result property="doctorid" column="doctorid" jdbcType="INTEGER"/>
         <result property="date" column="date" jdbcType="TIMESTAMP"/>
     </resultMap>
-    <select id="findAllregist" parameterType="com.sdl.hosp.model.dto.RegisterForm">
+    <select id="findAllregist" resultType="com.sdl.hosp.model.dto.RegisterForm">
         SELECT
 	      r.*,
 	      p.`name`,
@@ -21,7 +21,18 @@
 	      d.username as doctorname
 	    FROM t_regist r,t_pet p,t_user u,t_user d
 	    where
-	    r.petid=p.id and r.userid = u.id and r.doctorid = d.id and u.id = 258209
+	    r.petid=p.id and r.userid = u.id and r.doctorid = d.id and u.id = #{id} and r.resoved = #{resove}
+    </select>
+
+    <select id="findDoctorregist" resultType="com.sdl.hosp.model.dto.RegisterForm">
+        SELECT
+	      r.*,
+	      p.`name`,
+	      u.username as username,
+	      d.username as doctorname
+	    FROM t_regist r,t_pet p,t_user u,t_user d
+	    where
+	    r.petid=p.id and r.userid = u.id and r.doctorid = d.id and r.doctorid = #{id} and r.resoved = #{resove}
     </select>
     <!--查询单个-->
     <select id="queryById" resultMap="TRegistMap">

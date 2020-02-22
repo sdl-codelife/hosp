@@ -39,7 +39,7 @@ public class RegisterForm extends TRegist {
     @Override
     public String toString() {
         return "RegisterForm{" +
-                "Super='" + super.toString() + '\'' +
+                super.toString() + '\'' +
                 "name='" + name + '\'' +
                 ", username='" + username + '\'' +
                 ", doctorname='" + doctorname + '\'' +

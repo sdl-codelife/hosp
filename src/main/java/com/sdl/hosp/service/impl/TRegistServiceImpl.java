@@ -21,8 +21,13 @@ public class TRegistServiceImpl implements TRegistService {
     private TRegistDao tRegistDao;
 
     @Override
-    public List<RegisterForm> findAllregist(Integer id) {
-        return tRegistDao.findAllregist(id);
+    public List<RegisterForm> findAllregist(Integer id,Integer resove) {
+        return tRegistDao.findAllregist(id,resove);
+    }
+
+    @Override
+    public List<RegisterForm> findDoctorregist(Integer id, Integer resove) {
+        return tRegistDao.findDoctorregist(id,resove);
     }
 
     /**

@@ -1,5 +1,7 @@
 package com.sdl.hosp.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.sdl.hosp.model.dto.RegisterForm;
 import com.sdl.hosp.model.dto.ResponseBean;
 import com.sdl.hosp.model.entity.TRegist;
@@ -7,11 +9,7 @@ import com.sdl.hosp.service.TRegistService;
 import com.sdl.hosp.utils.UserUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -40,9 +38,36 @@ public class RegistController {
     }
     @ApiOperation("查看挂号信息")
     @GetMapping("/getorderlist")
-    public ResponseBean getorderlist(){
+    public ResponseBean getorderlist(@RequestParam(value = "pageNo",defaultValue = "1") int pageNo,
+                                     @RequestParam(value = "pageSize",defaultValue = "6") int pageSize,
+                                     Integer resove){
+        PageHelper.startPage(pageNo,pageSize);
         int userid = userUtil.getUserID(request);
-        List<RegisterForm> registerFormList = tRegistService.findAllregist(userid);
-        return ResponseBean.success("success",registerFormList);
+        List<RegisterForm> registerFormList = tRegistService.findAllregist(userid,resove);
+        PageInfo<RegisterForm> pageInfo = new PageInfo<>(registerFormList);
+        return ResponseBean.success("success",pageInfo);
+    }
+    @ApiOperation("取消挂号")
+    @DeleteMapping("/delteorderlist")
+    public ResponseBean delteorderlist(Integer id){
+        tRegistService.deleteById(id);
+        return ResponseBean.success("success");
+    }
+    @ApiOperation("根据获得当前医生的挂号单")
+    @GetMapping("/getdoctororderlist")
+    public ResponseBean getdoctororderlist(@RequestParam(value = "pageNo",defaultValue = "1") int pageNo,
+                                           @RequestParam(value = "pageSize",defaultValue = "6") int pageSize,
+                                               Integer resove){
+        PageHelper.startPage(pageNo,pageSize);
+        int userid = userUtil.getUserID(request);
+        List<RegisterForm> registerFormList = tRegistService.findDoctorregist(userid,resove);
+        PageInfo<RegisterForm> pageInfo = new PageInfo<>(registerFormList);
+        return ResponseBean.success("success",pageInfo);
+    }
+    @ApiOperation("诊断")
+    @PutMapping("/curepetform")
+    public ResponseBean curepet(@RequestBody TRegist tRegist){
+        tRegistService.update(tRegist);
+        return  ResponseBean.success("scuesss");
     }
 }
