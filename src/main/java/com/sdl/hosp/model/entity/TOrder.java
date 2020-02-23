@@ -82,4 +82,15 @@ public class TOrder implements Serializable {
         this.registid = registid;
     }
 
+    @Override
+    public String toString() {
+        return "TOrder{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", num=" + num +
+                ", price=" + price +
+                ", allprice=" + allprice +
+                ", registid=" + registid +
+                '}';
+    }
 }
