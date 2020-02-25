@@ -64,10 +64,21 @@ public class RegistController {
         PageInfo<RegisterForm> pageInfo = new PageInfo<>(registerFormList);
         return ResponseBean.success("success",pageInfo);
     }
+    @ApiOperation("根据获得当前医完成得挂号单")
+    @GetMapping("/getregistcomp")
+    public ResponseBean getregistcomp(@RequestParam(value = "pageNo",defaultValue = "1") int pageNo,
+                                           @RequestParam(value = "pageSize",defaultValue = "6") int pageSize,
+                                           String name){
+        PageHelper.startPage(pageNo,pageSize);
+        int userid = userUtil.getUserID(request);
+        List<RegisterForm> registerFormList = tRegistService.findRegistComp(userid,name);
+        PageInfo<RegisterForm> pageInfo = new PageInfo<>(registerFormList);
+        return ResponseBean.success("success",pageInfo);
+    }
     @ApiOperation("诊断")
     @PutMapping("/curepetform")
     public ResponseBean curepet(@RequestBody TRegist tRegist){
         tRegistService.update(tRegist);
-        return  ResponseBean.success("scuesss");
+        return  ResponseBean.success("success");
     }
 }

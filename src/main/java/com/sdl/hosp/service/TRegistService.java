@@ -15,6 +15,7 @@ import java.util.List;
 public interface TRegistService {
     List<RegisterForm> findAllregist(Integer id,Integer resove);
     List<RegisterForm> findDoctorregist(@Param("id") Integer id, @Param("resove") Integer resove);
+    List<RegisterForm> findRegistComp(@Param("id") Integer id, @Param("name")  String name);
     /**
      * 通过ID查询单条数据
      *

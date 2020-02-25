@@ -2,7 +2,7 @@ package com.sdl.hosp.dao;
 
 import com.sdl.hosp.model.dto.RegisterForm;
 import com.sdl.hosp.model.entity.TRegist;
-import io.swagger.models.auth.In;
+
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -25,6 +25,14 @@ public interface TRegistDao {
      * @return
      */
     List<RegisterForm> findDoctorregist(@Param("id") Integer id,@Param("resove") Integer resove);
+
+    /**
+     * 查看已完成挂号单
+     * @param id
+     * @param name
+     * @return
+     */
+    List<RegisterForm> findRegistComp(@Param("id") Integer id, @Param("name")  String name);
     /**
      * 通过ID查询单条数据
      *

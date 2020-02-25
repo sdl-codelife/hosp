@@ -30,6 +30,11 @@ public class TRegistServiceImpl implements TRegistService {
         return tRegistDao.findDoctorregist(id,resove);
     }
 
+    @Override
+    public List<RegisterForm> findRegistComp(Integer id, String name) {
+        return tRegistDao.findRegistComp(id,name);
+    }
+
     /**
      * 通过ID查询单条数据
      *

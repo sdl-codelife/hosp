@@ -21,6 +21,6 @@ class HospApplicationTests {
     @Test
     void test(){
 
-
+        System.out.println(registService.findRegistComp(258210,"猫"));
     }
 }

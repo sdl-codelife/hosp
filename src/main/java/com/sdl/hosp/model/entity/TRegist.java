@@ -29,10 +29,7 @@ public class TRegist implements Serializable {
     * 诊断结果
     */
     private String answer;
-    /**
-    * 用药
-    */
-    private String medicine;
+
     /**
     * 宠物id
     */
@@ -50,7 +47,6 @@ public class TRegist implements Serializable {
     */
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date date;
-
 
     public Integer getId() {
         return id;
@@ -82,14 +78,6 @@ public class TRegist implements Serializable {
 
     public void setAnswer(String answer) {
         this.answer = answer;
-    }
-
-    public String getMedicine() {
-        return medicine;
-    }
-
-    public void setMedicine(String medicine) {
-        this.medicine = medicine;
     }
 
     public Integer getPetid() {
@@ -131,7 +119,6 @@ public class TRegist implements Serializable {
                 ", resoved=" + resoved +
                 ", question='" + question + '\'' +
                 ", answer='" + answer + '\'' +
-                ", medicine='" + medicine + '\'' +
                 ", petid=" + petid +
                 ", userid=" + userid +
                 ", doctorid=" + doctorid +
