@@ -19,6 +19,11 @@ public class TOrderServiceImpl implements TOrderService {
     @Resource
     private TOrderDao tOrderDao;
 
+    @Override
+    public List<TOrder> queryAll(TOrder tOrder) {
+        return tOrderDao.queryAll(tOrder);
+    }
+
     /**
      * 通过ID查询单条数据
      *

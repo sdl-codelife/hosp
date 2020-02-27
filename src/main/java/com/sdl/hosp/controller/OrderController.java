@@ -4,11 +4,11 @@ import com.sdl.hosp.model.dto.ResponseBean;
 import com.sdl.hosp.model.entity.TOrder;
 import com.sdl.hosp.service.TOrderService;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Description:
@@ -30,5 +30,13 @@ public class OrderController {
     public ResponseBean delteorder(Integer id){
         tOrderService.deleteById(id);
         return ResponseBean.success("success");
+    }
+    @ApiOperation("根据挂号单获取药品订单")
+    @GetMapping("/getordermedicine")
+    public ResponseBean getmedicine(Integer registid){
+        TOrder tOrder = new TOrder();
+        tOrder.setRegistid(registid);
+        List<TOrder> orders = tOrderService.queryAll(tOrder);
+        return ResponseBean.success("scuess",orders);
     }
 }

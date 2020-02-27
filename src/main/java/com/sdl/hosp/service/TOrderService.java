@@ -10,7 +10,13 @@ import java.util.List;
  * @since 2020-02-22 21:47:52
  */
 public interface TOrderService {
-
+    /**
+     * 通过实体作为筛选条件查询
+     *
+     * @param tOrder 实例对象
+     * @return 对象列表
+     */
+    List<TOrder> queryAll(TOrder tOrder);
     /**
      * 通过ID查询单条数据
      *
