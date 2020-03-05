@@ -8,7 +8,6 @@ import java.util.UUID;
 import org.springframework.web.multipart.MultipartFile;
 
 public class UploadUtils {
-
     // 项目根路径下的目录 -- SpringBoot static 目录相当于是根路径下（SpringBoot 默认）
     public final static String IMG_PATH_PREFIX = "/static/upload/images/";
     public final static String baseUrl = "http://127.0.0.1:8787";

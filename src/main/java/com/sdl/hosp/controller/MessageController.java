@@ -35,7 +35,7 @@ public class MessageController {
     @ApiOperation("获取所有公告信息")
     @GetMapping("/getallmessage")
     public ResponseBean getallmessage(@RequestParam(value = "pageNo",defaultValue = "1") int pageNo,
-                                      @RequestParam(value = "pageSize",defaultValue = "6") int pageSize,
+                                      @RequestParam(value = "pageSize",defaultValue = "3") int pageSize,
                                       @RequestParam(value = "parms",required = false) String parms){
         PageHelper.startPage(pageNo,pageSize);
         List<TMessage> tMessages;

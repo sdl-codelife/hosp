@@ -52,7 +52,6 @@ public class UserController {
     public ResponseBean uploadimage(@RequestParam("imgfile") MultipartFile imgfile){
         int userId = userUtil.getUserID(request);
         TUserinfo info = tUserinfoService.findUserInfoById(userId);
-
        if(null!=info.getAvatar()&&info.getAvatar()!=""){
            String oldavatar = info.getAvatar();
            UploadUtils.delteOldavatar(oldavatar);
