@@ -47,4 +47,19 @@ public class MedicineController {
         tMedicineService.deleteById(id);
         return ResponseBean.success("success");
     }
+    @ApiOperation("订购药品")
+    @PutMapping("/ordermedicine")
+    public ResponseBean usermedicine(@RequestBody TMedicine tMedicine){
+        TMedicine sqlMedic = tMedicineService.queryById(tMedicine.getId());
+        int num = sqlMedic.getNum() - tMedicine.getNum();
+        if(num>=0){
+            //插入
+            tMedicine.setNum(num);
+            tMedicineService.update(tMedicine);
+            return ResponseBean.success("success");
+        }else {
+            //库存不足
+            return ResponseBean.error("库存不足");
+        }
+    }
 }
