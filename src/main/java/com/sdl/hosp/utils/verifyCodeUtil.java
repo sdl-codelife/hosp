@@ -1,8 +1,7 @@
 package com.sdl.hosp.utils;
 
+import com.alibaba.druid.util.Base64;
 import org.springframework.stereotype.Component;
-import sun.misc.BASE64Encoder;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -203,8 +202,7 @@ public class verifyCodeUtil {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();//io流
 		ImageIO.write(buffImg, "png", baos);//写入流中
 		byte[] bytes = baos.toByteArray();//转换成字节
-		BASE64Encoder encoder = new BASE64Encoder();
-		String png_base64 =  encoder.encodeBuffer(bytes).trim();//转换成base64串
+		String png_base64 = Base64.byteArrayToBase64(bytes);//转换成base64串
 		png_base64 = png_base64.replaceAll("\n", "").replaceAll("\r", "");//删除 \r\n
 		return png_base64;
 	}
@@ -216,5 +214,5 @@ public class verifyCodeUtil {
 	public String getCode() {
 		return code.toLowerCase();
 	}
- 
+
 }

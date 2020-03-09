@@ -120,6 +120,7 @@ public class UserController {
     @ApiOperation("添加用户")
     @PostMapping("/adduser")
     public ResponseBean adduser(@RequestBody UserInfo userInfo){
+        System.out.println(userInfo);
         TUser user = new TUser(null,userInfo.getUsername(),userInfo.getPassword());
         tUserService.addUser(user);
         tRoleService.addRole(new TRole(null,user.getId(),userInfo.getUsertype()));
